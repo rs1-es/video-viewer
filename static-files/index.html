@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Preview - video.rs1.es</title>
+    <link rel="stylesheet" href="res/css/video-js.min.css?v=7.20.3">
+    <link rel="stylesheet" href="res/css/main.min.css">
+</head>
+<body>
+    <div class="content">
+        <div class="title">
+            <h1>Video Preview</h1>
+        </div>
+        <div class="video">
+            <video id="my-video" class="video-js" controls autoplay muted></video>
+        </div>
+    </div>
+    <script src="res/js/video.min.js?v=7.20.3"></script>
+    <script src="res/js/videojs-contrib-quality-levels.min.js?v=2.2.1"></script>
+    <script src="res/js/videojs-hls-quality-selector.min.js?v=1.1.4"></script>
+    <script>
+        let urlSearchParams = new URLSearchParams(location.search);
+        let src;
+        if (urlSearchParams.has('src')) {
+            src = atob(urlSearchParams.get('src'));
+        }
+        let myVideo = videojs('my-video');
+        myVideo.src({
+            src: src
+        });
+        myVideo.aspectRatio('16:9');
+
+        myVideo.hlsQualitySelector();
+        
+    </script>
+</body>
+</html>
